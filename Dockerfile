@@ -1,4 +1,11 @@
-FROM openjdk:8
-EXPOSE 9090
+FROM openjdk:16-alpine3.13
+
+WORKDIR /app
+
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
 RUN ./mvnw dependency:go-offline
-CMD ["./mvnw" "/src/main/java/Test.java "]
+
+COPY src ./src
+
+CMD ["./mvnw", "spring-boot:run"]
