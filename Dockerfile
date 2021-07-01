@@ -1,4 +1,4 @@
 FROM openjdk:8
 EXPOSE 9090
-RUN java
+RUN ./mvnw dependency:go-offline
 CMD ["./mvnw" "src/main/java/test.java"]
